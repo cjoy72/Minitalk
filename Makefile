@@ -5,58 +5,79 @@
 #                                                     +:+ +:+         +:+      #
 #    By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/18 15:38:07 by cbaroi            #+#    #+#              #
-#    Updated: 2024/05/18 16:08:07 by cbaroi           ###   ########.fr        #
+#    Created: 2024/05/19 20:32:13 by cbaroi            #+#    #+#              #
+#    Updated: 2024/05/19 23:36:43 by cbaroi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Define the compiler
-CC = gcc
+HEADERS_DIR = Headers
+SRCS_DIR = srcs
+OBJS_DIR = objs
+UTILS_DIR = utils
 
-# Define the flags
+SRCS_FILES =	server.c client.c
+BONUS_FILES =	server_bonus.c client_bonus.c
+UTILS_FILES =	ft_atoi.c ft_isdigit.c ft_putchar_fd.c ft_putstr_fd.c ft_putnbr_fd.c ft_error.c
+
+SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES)) $(addprefix $(UTILS_DIR)/, $(UTILS_FILES))
+OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_FILES:.c=.o)) $(addprefix $(OBJS_DIR)/, $(UTILS_FILES:.c=.o))
+
+BONUS_SRCS = $(addprefix $(SRCS_DIR)/, $(BONUS_FILES))
+BONUS_OBJS = $(addprefix $(OBJS_DIR)/, $(BONUS_FILES:.c=.o))
+
+CLIENT_OBJS = $(filter-out $(OBJS_DIR)/server.o, $(OBJS))
+SERVER_OBJS = $(filter-out $(OBJS_DIR)/client.o, $(OBJS))
+
+CLIENT_BONUS_OBJS = $(filter-out $(OBJS_DIR)/server_bonus.o, $(BONUS_OBJS)) $(filter $(OBJS_DIR)/ft_%.o, $(OBJS))
+SERVER_BONUS_OBJS = $(filter-out $(OBJS_DIR)/client_bonus.o, $(BONUS_OBJS)) $(filter $(OBJS_DIR)/ft_%.o, $(OBJS))
+
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
+RM = rm -f
 
-# Define the source files
-SRCS = client.c server.c utils.c
-BONUS_SRCS = client_bonus.c server_bonus.c utils.c
+NAME = minitalk
+CLIENT = client
+SERVER = server
+CLIENT_BONUS = client_bonus
+SERVER_BONUS = server_bonus
 
-# Define the object files
-OBJS = $(SRCS:.c=.o)
-BONUS_OBJS = $(BONUS_SRCS:.c=.o)
+all: $(CLIENT) $(SERVER)
 
-# Define the executables
-TARGETS = client server
+bonus: $(CLIENT_BONUS) $(SERVER_BONUS)
 
-BONUS_TARGETS = client_bonus server_bonus
+$(CLIENT): $(CLIENT_OBJS)
+	$(CC) $(CFLAGS) -o $(CLIENT) $(CLIENT_OBJS)
+	@echo "Client compilation done!"
 
-# Default rule to build all targets
-all: $(TARGETS)
+$(SERVER): $(SERVER_OBJS)
+	$(CC) $(CFLAGS) -o $(SERVER) $(SERVER_OBJS)
+	@echo "Server compilation done!"
 
-bonus: $(BONUS_TARGETS)
+$(CLIENT_BONUS): $(CLIENT_BONUS_OBJS)
+	$(CC) $(CFLAGS) -o $(CLIENT_BONUS) $(CLIENT_BONUS_OBJS)
+	@echo "Client bonus compilation done!"
 
-# Rule to build client
-client: client.o utils.o
-	$(CC) $(CFLAGS) -o client client.o utils.o
+$(SERVER_BONUS): $(SERVER_BONUS_OBJS)
+	$(CC) $(CFLAGS) -o $(SERVER_BONUS) $(SERVER_BONUS_OBJS)
+	@echo "Server bonus compilation done!"
 
-client_bonus: client_bonus.o utils.o
-	$(CC) $(CFLAGS) -o client_bonus client_bonus.o utils.o
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADERS_DIR)/$(NAME).h
+	mkdir -p $(OBJS_DIR)
+	@$(CC) $(CFLAGS) -I $(HEADERS_DIR) -c $< -o $@
 
-# Rule to build server
-server: server.o utils.o
-	$(CC) $(CFLAGS) -o server server.o utils.o
+$(OBJS_DIR)/%.o: $(UTILS_DIR)/%.c $(HEADERS_DIR)/$(NAME).h
+	mkdir -p $(OBJS_DIR)
+	@$(CC) $(CFLAGS) -I $(HEADERS_DIR) -c $< -o $@
 
-server_bonus: server_bonus.o utils.o
-	$(CC) $(CFLAGS) -o server_bonus server_bonus.o utils.o
-
-# Rule to compile source files into object files
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-# Clean up the generated files
 clean:
-	rm -f $(OBJS) $(BONUS_OBJS)
+	$(RM) $(OBJS) $(BONUS_OBJS)
+	echo "Objects deleted!"
+	rmdir $(OBJS_DIR) 2> /dev/null || true
 
 fclean: clean
-	rm -f $(TARGETS) $(BONUS_TARGETS)
-# Phony targets
-.PHONY: all clean
+	$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
+	echo "Programs deleted!"
+
+re: fclean all
+
+.PHONY: all clean fclean re bonus

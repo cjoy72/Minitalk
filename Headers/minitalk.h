@@ -5,24 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 15:32:39 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/18 15:42:41 by cbaroi           ###   ########.fr       */
+/*   Created: 2024/05/19 20:22:34 by cbaroi            #+#    #+#             */
+/*   Updated: 2024/05/19 21:22:05 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
 
-# include <stdlib.h>
-# include <unistd.h>
 # include <signal.h>
+# include <unistd.h>
+# include <stdlib.h>
 
-# define END_TRANSMISSION '\0'
-
-int		ft_atoi(const char *str);
-int		ft_strlen(char *str);
+void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
-int		get_digits(long int n);
-char	*ft_itoa(int n);
+int		ft_isdigit(int c);
+int		ft_atoi(const char *str);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_error(char *error);
 
 #endif
