@@ -6,7 +6,7 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 14:30:48 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/18 21:17:05 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/19 19:56:09 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	main(int argc, char **argv)
 	}
 	server_pid = ft_atoi(argv[1]);
 	i = 0;
-	while (argv[1][i])
-		send_signal(server_pid, argv[1][i++]);
+	while (argv[2][i])
+		send_signal(server_pid, argv[2][i++]);
 	send_signal(server_pid, '\0');
 	return (0);
 }

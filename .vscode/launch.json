@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/calvinjoybaroi/Desktop/42_School Projects/Minitalk/Minitalk",
+      "program": "/Users/calvinjoybaroi/Desktop/42_School Projects/Minitalk/Minitalk/build/Debug/outDebug"
+    }
+  ]
+}
