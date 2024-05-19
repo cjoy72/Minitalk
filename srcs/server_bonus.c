@@ -6,7 +6,7 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 23:21:11 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/19 23:28:10 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/20 01:10:21 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static void	ft_btoa(int signal, siginfo_t *info, void *context)
 	if (bits == 8)
 	{
 		if (c == '\n')
-			kill(info->si_pid, SIGUSR1);
+			if (kill(info->si_pid, SIGUSR1) == -1)
+				kill(info->si_pid, SIGUSR1);
 		ft_putchar_fd(c, 1);
 		c = 0;
 		bits = 0;
