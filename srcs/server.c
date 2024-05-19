@@ -6,7 +6,7 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 21:59:19 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/19 23:02:35 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/20 01:28:16 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,20 @@ static void	ft_btoa(int signal)
 
 int	main(int argc, char *argv[])
 {
-	struct sigaction sa;
+	struct sigaction	sa;
 
 	(void)argv;
 	if (argc != 1)
 		ft_error("ERROR_ARGS");
 	ft_putnbr_fd(getpid(), 1);
 	ft_putchar_fd('\n', 1);
-
 	sa.sa_handler = ft_btoa;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
-
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		ft_error("ERROR_SIGNAL");
 	if (sigaction(SIGUSR2, &sa, NULL) == -1)
 		ft_error("ERROR_SIGNAL");
-
 	while (1)
 	{
 		pause();
