@@ -6,7 +6,7 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 21:59:19 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/20 01:28:16 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/20 22:38:06 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ static void	ft_btoa(int signal)
 	bits++;
 	if (bits == 8)
 	{
-		ft_putchar_fd(c, 1);
+		if (!(c > 0 && c < 8)
+			|| c == 127
+			|| (c > 13 && c < 32))
+			ft_putchar_fd(c, 1);
 		c = 0;
 		bits = 0;
 	}
