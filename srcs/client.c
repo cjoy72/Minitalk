@@ -24,18 +24,18 @@ static void	ft_atob(int pid, char c)
 			if (kill(pid, SIGUSR1) == -1)
 				if (kill(pid, SIGUSR1) == -1)
 					kill(pid, SIGUSR1);
-			usleep(500);
+			usleep(100);
 		}
 		else
 		{
 			if (kill(pid, SIGUSR2) == -1)
 				if (kill(pid, SIGUSR2) == -1)
 					kill(pid, SIGUSR2);
-			usleep(500);
+			usleep(100);
 		}
 		bits++;
 	}
-	usleep(50000);
+	usleep(100);
 }
 
 int	main(int argc, char *argv[])
