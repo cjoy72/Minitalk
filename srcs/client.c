@@ -6,7 +6,7 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 21:40:12 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/20 01:29:43 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/20 09:18:12 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ static void	ft_atob(int pid, char c)
 			if (kill(pid, SIGUSR1) == -1)
 				if (kill(pid, SIGUSR1) == -1)
 					kill(pid, SIGUSR1);
-			usleep(100);
+			usleep(500);
 		}
 		else
 		{
 			if (kill(pid, SIGUSR2) == -1)
 				if (kill(pid, SIGUSR2) == -1)
 					kill(pid, SIGUSR2);
-			usleep(100);
+			usleep(500);
 		}
-		usleep(100);
 		bits++;
 	}
+	usleep(50000);
 }
 
 int	main(int argc, char *argv[])
