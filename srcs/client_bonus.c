@@ -6,13 +6,11 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 21:40:12 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/20 01:26:37 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/21 10:10:10 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Headers/minitalk.h"
-
-int	g_ack = 0;
 
 static void	ft_atob(int pid, char c)
 {
@@ -26,16 +24,16 @@ static void	ft_atob(int pid, char c)
 			if (kill(pid, SIGUSR1) == -1)
 				if (kill(pid, SIGUSR1) == -1)
 					kill(pid, SIGUSR1);
-			usleep(100);
+			usleep(500);
 		}
 		else
 		{
 			if (kill(pid, SIGUSR2) == -1)
 				if (kill(pid, SIGUSR2) == -1)
 					kill(pid, SIGUSR2);
-			usleep(100);
+			usleep(500);
 		}
-		usleep(100);
+		usleep(500);
 		bits++;
 	}
 }
@@ -44,7 +42,7 @@ static void	ft_ack_receive(int signal)
 {
 	if (signal == SIGUSR1)
 	{
-		g_ack = 1;
+		g_content.g_ack = 1;
 		ft_putstr_fd("Message received by server\n", 1);
 	}
 }
@@ -59,6 +57,7 @@ int	main(int argc, char *argv[])
 	pid = ft_atoi(argv[1]);
 	if (signal(SIGUSR1, &ft_ack_receive) == SIG_ERR)
 		ft_error("ERROR_SIGNAL");
+	g_content.g_ack = 0;
 	i = 0;
 	while (argv[2][i])
 	{
@@ -69,7 +68,7 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	ft_atob(pid, '\n');
-	while (!g_ack)
+	while (!g_content.g_ack)
 		pause();
 	return (0);
 }

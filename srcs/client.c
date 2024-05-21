@@ -6,7 +6,7 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 21:40:12 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/20 22:39:03 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/21 09:54:27 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	ft_atob(int pid, char c)
 	usleep(500);
 }
 
-int	main(int argc, char *argv[])
+int	main(int argc, char **argv)
 {
 	int	i;
 	int	pid;
