@@ -6,7 +6,7 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:22:34 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/21 09:39:04 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/21 11:35:30 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 typedef struct s_content
 {
+	int	g_characters;
 	int	g_ack;
 	int	g_c;
 	int	g_bits;
