@@ -6,7 +6,7 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:22:34 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/19 21:22:05 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/21 09:39:04 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 # include <signal.h>
 # include <unistd.h>
 # include <stdlib.h>
+
+typedef struct s_content
+{
+	int	g_ack;
+	int	g_c;
+	int	g_bits;
+}	t_content;
+
+t_content	g_content;
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
