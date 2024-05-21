@@ -6,7 +6,7 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 21:59:19 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/21 10:03:34 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/21 15:26:29 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@ static void	ft_reset(int signal)
 
 static void	ft_btoa(int signal)
 {
-	alarm(1);
+	struct itimerval	timer;
+	
+	timer.it_value.tv_sec = 0;
+	timer.it_value.tv_usec = 250000;
+	timer.it_interval.tv_sec = 0;
+	timer.it_interval.tv_usec = 0;
+	setitimer(ITIMER_REAL, &timer, NULL);
 	if (signal == SIGUSR1)
 		g_content.g_c |= (1 << g_content.g_bits);
 	g_content.g_bits++;
@@ -39,7 +45,6 @@ static void	ft_btoa(int signal)
 int	main(int argc, char *argv[])
 {
 	struct sigaction	sa;
-	struct sigaction	sa_reset;
 
 	(void)argv;
 	if (argc != 1)
@@ -51,11 +56,7 @@ int	main(int argc, char *argv[])
 	sa.sa_flags = 0;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
-	sa_reset.sa_handler = ft_reset;
-	sigemptyset(&sa_reset.sa_mask);
-	sa_reset.sa_flags = 0;
-	if (sigaction(SIGALRM, &sa_reset, NULL) == -1)
-		ft_error("ERROR_SIGNAL");
+	signal(SIGALRM, ft_reset);
 	while (1)
 		pause();
 	return (0);

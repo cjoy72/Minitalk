@@ -6,7 +6,7 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 21:40:12 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/21 11:49:39 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/21 15:20:31 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static void	ft_atob(int pid, char c)
 		g_content.g_bits++;
 	}
 	g_content.g_characters++;
-	if (g_content.g_characters > 1000)
+	if (g_content.g_characters > 100)
 	{
-		usleep(1000010);
+		usleep(300000);
 		g_content.g_characters = 0;
 	}
 	usleep(500);

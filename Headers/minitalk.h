@@ -6,7 +6,7 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:22:34 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/21 11:35:30 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/21 15:26:39 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <signal.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <sys/time.h>
+
 
 typedef struct s_content
 {
