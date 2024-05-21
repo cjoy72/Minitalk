@@ -6,7 +6,7 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 23:21:11 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/21 10:08:19 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/21 23:36:29 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static void	ft_btoa(int signal, siginfo_t *info, void *context)
 			ft_putchar_fd(g_content.g_c, 1);
 		g_content.g_c = 0;
 		g_content.g_bits = 0;
+		if (kill(info->si_pid, SIGUSR2) == -1)
+			kill(info->si_pid, SIGUSR2);
 	}
 }
 
