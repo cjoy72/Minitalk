@@ -6,7 +6,7 @@
 #    By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/19 20:32:13 by cbaroi            #+#    #+#              #
-#    Updated: 2024/05/19 23:36:43 by cbaroi           ###   ########.fr        #
+#    Updated: 2024/05/22 12:20:11 by cbaroi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,37 +46,37 @@ all: $(CLIENT) $(SERVER)
 bonus: $(CLIENT_BONUS) $(SERVER_BONUS)
 
 $(CLIENT): $(CLIENT_OBJS)
-	$(CC) $(CFLAGS) -o $(CLIENT) $(CLIENT_OBJS)
-	@echo "Client compilation done!"
+	@$(CC) $(CFLAGS) -o $(CLIENT) $(CLIENT_OBJS)
+	@echo "Client compilation Succed!"
 
 $(SERVER): $(SERVER_OBJS)
-	$(CC) $(CFLAGS) -o $(SERVER) $(SERVER_OBJS)
-	@echo "Server compilation done!"
+	@$(CC) $(CFLAGS) -o $(SERVER) $(SERVER_OBJS)
+	@echo "Server compilation Succed!"
 
 $(CLIENT_BONUS): $(CLIENT_BONUS_OBJS)
-	$(CC) $(CFLAGS) -o $(CLIENT_BONUS) $(CLIENT_BONUS_OBJS)
-	@echo "Client bonus compilation done!"
+	@$(CC) $(CFLAGS) -o $(CLIENT_BONUS) $(CLIENT_BONUS_OBJS)
+	@echo "Client bonus compilation Succed!"
 
 $(SERVER_BONUS): $(SERVER_BONUS_OBJS)
-	$(CC) $(CFLAGS) -o $(SERVER_BONUS) $(SERVER_BONUS_OBJS)
-	@echo "Server bonus compilation done!"
+	@$(CC) $(CFLAGS) -o $(SERVER_BONUS) $(SERVER_BONUS_OBJS)
+	@echo "Server bonus compilation Succed!"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HEADERS_DIR)/$(NAME).h
-	mkdir -p $(OBJS_DIR)
+	@mkdir -p $(OBJS_DIR)
 	@$(CC) $(CFLAGS) -I $(HEADERS_DIR) -c $< -o $@
 
 $(OBJS_DIR)/%.o: $(UTILS_DIR)/%.c $(HEADERS_DIR)/$(NAME).h
-	mkdir -p $(OBJS_DIR)
+	@mkdir -p $(OBJS_DIR)
 	@$(CC) $(CFLAGS) -I $(HEADERS_DIR) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	@$(RM) $(OBJS) $(BONUS_OBJS)
 	echo "Objects deleted!"
-	rmdir $(OBJS_DIR) 2> /dev/null || true
+	@rmdir $(OBJS_DIR) 2> /dev/null || true
 
 fclean: clean
-	$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
-	echo "Programs deleted!"
+	@$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
+	@echo "Programs deleted!"
 
 re: fclean all
 

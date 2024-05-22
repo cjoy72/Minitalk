@@ -6,7 +6,7 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 21:40:12 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/22 11:52:02 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/22 12:27:16 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,5 @@ int	main(int argc, char *argv[])
 		}
 	}
 	ft_atob(g_content.g_pid, '\n');
-	while (!g_content.g_ack)
-		pause();
 	return (0);
 }
