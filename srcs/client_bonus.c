@@ -6,11 +6,13 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 21:40:12 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/22 00:08:52 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/22 12:05:17 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Headers/minitalk.h"
+
+t_content	g_content;
 
 static void	ft_characterreceived(int signal)
 {
@@ -57,32 +59,27 @@ static void	ft_ack_receive(int signal)
 
 int	main(int argc, char *argv[])
 {
-	int	i;
-	int	pid;
-
 	if (argc != 3)
 		ft_error("ERROR_ARGS");
-	pid = ft_atoi(argv[1]);
-	if (signal(SIGUSR1, &ft_ack_receive) == SIG_ERR)
-		ft_error("ERROR_SIGNAL");
-	if (signal(SIGUSR2, &ft_characterreceived) == SIG_ERR)
-		ft_error("ERROR_SIGNAL");
+	g_content.g_pid = ft_atoi(argv[1]);
+	signal(SIGUSR1, &ft_ack_receive);
+	signal(SIGUSR2, &ft_characterreceived);
 	g_content.g_ack = 0;
-	i = 0;
-	while (argv[2][i])
+	g_content.g_i = 0;
+	while (argv[2][g_content.g_i])
 	{
-		if (!((argv[2][i] > 0 && argv[2][i] < 8)
-			|| argv[2][i] == 127
-			|| (argv[2][i] > 13 && argv[2][i] < 32)))
-			ft_atob(pid, argv[2][i]);
+		if (!((argv[2][g_content.g_i] > 0 && argv[2][g_content.g_i] < 8)
+			|| argv[2][g_content.g_i] == 127
+			|| (argv[2][g_content.g_i] > 13 && argv[2][g_content.g_i] < 32)))
+			ft_atob(g_content.g_pid, argv[2][g_content.g_i]);
 		usleep(500);
 		if (g_content.g_charactersent)
 		{
 			g_content.g_charactersent = 0;
-			i++;
+			g_content.g_i++;
 		}
 	}
-	ft_atob(pid, '\n');
+	ft_atob(g_content.g_pid, '\n');
 	while (!g_content.g_ack)
 		pause();
 	return (0);

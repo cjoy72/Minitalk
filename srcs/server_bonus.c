@@ -6,11 +6,13 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 23:21:11 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/21 23:36:29 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/22 11:27:53 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Headers/minitalk.h"
+
+t_content	g_content;
 
 static void	ft_reset(int signal)
 {

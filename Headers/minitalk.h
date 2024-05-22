@@ -6,7 +6,7 @@
 /*   By: cbaroi <cbaroi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/19 20:22:34 by cbaroi            #+#    #+#             */
-/*   Updated: 2024/05/21 23:44:16 by cbaroi           ###   ########.fr       */
+/*   Updated: 2024/05/22 11:47:51 by cbaroi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,16 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
-
 typedef struct s_content
 {
+	int	g_i;
 	int	g_characters;
 	int	g_ack;
 	int	g_c;
 	int	g_bits;
 	int	g_charactersent;
+	int	g_pid;
 }	t_content;
-
-t_content	g_content;
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
